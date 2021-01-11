@@ -22,11 +22,11 @@ module.exports = {
   },
 
   update(id, changes) {
-    const user = users.find((user) => user.id === id);
-    if (!user) return Promise.resolve(null);
+    const thisUser = users.find((user) => user.id === id);
+    if (!thisUser) return Promise.resolve(null);
 
     const updatedUser = { ...changes, id };
-    const users = users.map((user) => (user.id === id ? updatedUser : user));
+    users = users.map((u) => (u.id === id ? updatedUser : u));
     return Promise.resolve(updatedUser);
   },
 
