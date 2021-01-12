@@ -2,16 +2,21 @@ const express = require("express");
 
 const User = require("./user-model");
 
+const cors = require("cors");
+
 const server = express();
 
 server.use(express.json());
+server.use(cors());
 
 server.get("/", (req, res) => {
   res.json({ message: "hello world" });
 });
 
 server.post("/api/users", (req, res) => {
-  const { user } = req.body;
+  const user = req.body;
+  const name = user.name;
+  const bio = user.bio;
   if (!user.name || !user.bio) {
     res
       .status(400)
